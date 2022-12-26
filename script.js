@@ -1,3 +1,4 @@
+
 const productContainer = document.getElementById("products-container");
 const headerContainer = document.getElementById('header');
 

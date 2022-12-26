@@ -1,5 +1,7 @@
 
 
+
+
 function createProduct(product) {
 
     const productHTML = document.createElement('div');
@@ -37,10 +39,10 @@ function createProductList(productList) {
 }
 
 function createHeader(headerObject) {
-    //TODO: add logic
-
-    //stub
     const headerElement = document.createElement('div');
-    headerElement.innerHTML = 'HEADER HERE';
+    headerElement.classList.add('header-container');
+    const title = document.createElement('h1');
+    title.innerHTML = headerObject.title;
+    headerElement.appendChild(title);
     return headerElement;
 }
