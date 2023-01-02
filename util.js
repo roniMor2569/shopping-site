@@ -1,7 +1,6 @@
 
 
 
-
 function createProduct(product) {
 
     const productHTML = document.createElement('div');
@@ -45,4 +44,13 @@ function createHeader(headerObject) {
     title.innerHTML = headerObject.title;
     headerElement.appendChild(title);
     return headerElement;
+}
+
+function compareByPriceFunction(productA, productB) {
+    if(sortValue === 'price'){
+        return productA.price - productB.price;
+    } else { //sort by name
+        return productA.name.localeCompare(productB.name);
+    }
+
 }

@@ -1,6 +1,13 @@
-
 const productContainer = document.getElementById("products-container");
 const headerContainer = document.getElementById('header');
+const filterDropdown = document.getElementById('filterMenu');
+let sortValue = 'price';
+
+filterDropdown.addEventListener('change', (evt) => {
+    sortValue = evt.target.value;
+    console.log('sort value changed to: ' + sortValue);
+    renderPage();
+})
 
 let productsArray = [];
 let headerData = null;
@@ -11,10 +18,13 @@ function onDataSuccess(data) {
 }
 
 function onDataFailed(error) {
-    alert('products data failed to arrive');
+    // alert('products data failed to arrive');
 }
 
 function renderPage() {
+    //sort products by price
+    productsArray.sort(compareByPriceFunction);
+
     const productsHTML = createProductList(productsArray);
     productContainer.innerHTML = '';
     productContainer.appendChild(productsHTML);
@@ -52,6 +62,8 @@ dataPromise
 console.log('code still running');
 
 renderPage();
+
+
 
 
 
