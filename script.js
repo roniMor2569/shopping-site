@@ -1,16 +1,32 @@
 const productContainer = document.getElementById("products-container");
 const headerContainer = document.getElementById('header');
-const filterDropdown = document.getElementById('filterMenu');
-let sortValue = 'price';
+const sortDropdown = document.getElementById('sortMenu');
+const filterByPriceDropdown = document.getElementById('filterByPriceMenu');
 
-filterDropdown.addEventListener('change', (evt) => {
+let sortValue = 'price';
+let filterByPriceSelectedValue = '-1';
+let filterByPriceValueArray = [
+    [0,20],
+    [20,50],
+    [50,100]
+]
+
+filterByPriceDropdown.addEventListener('change', (evt) => {
+    filterByPriceSelectedValue = evt.target.value;
+    console.log('filter by price value changed to: ' + filterByPriceSelectedValue);
+    renderPage();
+});
+
+sortDropdown.addEventListener('change', (evt) => {
     sortValue = evt.target.value;
     console.log('sort value changed to: ' + sortValue);
     renderPage();
 })
 
 let productsArray = [];
-let headerData = null;
+let headerData = {
+    title: 'loading...'
+};
 
 function onDataSuccess(data) {
     productsArray = data;
@@ -23,9 +39,11 @@ function onDataFailed(error) {
 
 function renderPage() {
     //sort products by price
-    productsArray.sort(compareByPriceFunction);
+    let tempProductArray = productsArray;
+    tempProductArray.sort(compareByPriceFunction);
+    tempProductArray = filterByPrice(tempProductArray, filterByPriceValueArray[+filterByPriceSelectedValue]);
 
-    const productsHTML = createProductList(productsArray);
+    const productsHTML = createProductList(tempProductArray);
     productContainer.innerHTML = '';
     productContainer.appendChild(productsHTML);
 

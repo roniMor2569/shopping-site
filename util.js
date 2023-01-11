@@ -1,6 +1,3 @@
-
-
-
 function createProduct(product) {
 
     const productHTML = document.createElement('div');
@@ -52,5 +49,28 @@ function compareByPriceFunction(productA, productB) {
     } else { //sort by name
         return productA.name.localeCompare(productB.name);
     }
-
 }
+
+//priceRange - [10,20]
+//priceRange - [0,50]
+
+function filterByPrice(productArray, priceRange) {
+    if(!priceRange) {
+        return productArray;
+    }
+    const filteredArray = productArray.filter((product) => {
+        if(product.price >= priceRange[0] && product.price <= priceRange[1]) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+    return filteredArray;
+}
+
+//String.includes()
+// function filterByName(prodcutArray, partialName) {
+//     const filteredArray = prodcutArray.filter((element) => {
+        
+//     })
+// }
