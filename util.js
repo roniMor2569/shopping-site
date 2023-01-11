@@ -1,10 +1,11 @@
-function createProduct(product) {
+function createProduct({name, price, currency = '$'}) {
+
 
     const productHTML = document.createElement('div');
     productHTML.classList.add('product');
 
     const productTitle = document.createElement('h2');
-    productTitle.innerHTML = product.name;
+    productTitle.innerHTML = name;
     productHTML.appendChild(productTitle);
 
     const productDataContainer = document.createElement('div');
@@ -13,7 +14,7 @@ function createProduct(product) {
 
     const productPrice = document.createElement('div');
     productPrice.classList.add('product-price');
-    productPrice.innerHTML = 'Price: ' + product.price;
+    productPrice.innerHTML = 'Price: ' + price + currency;
 
     productDataContainer.appendChild(productPrice);
     
