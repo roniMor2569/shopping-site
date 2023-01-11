@@ -69,8 +69,10 @@ function filterByPrice(productArray, priceRange) {
 }
 
 //String.includes()
-// function filterByName(prodcutArray, partialName) {
-//     const filteredArray = prodcutArray.filter((element) => {
-        
-//     })
-// }
+function filterByName(prodcutArray, partialName) {
+    const filteredArray = prodcutArray.filter((product) => {
+        return product.name.toLowerCase().includes(partialName.toLowerCase()); 
+    });
+    console.log('search resolt:' , filteredArray)
+    return filteredArray; 
+}
