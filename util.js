@@ -30,7 +30,8 @@ function createProductList(productList) {
             productListElement.appendChild(product);
         }
     } else {
-        productListElement.innerHTML = 'No Items.';
+        productListElement.classList.add('no-item');
+        productListElement.innerHTML = 'No Items...';
     }
     return productListElement;
 }
