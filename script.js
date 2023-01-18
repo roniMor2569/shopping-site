@@ -4,6 +4,10 @@ const sortDropdown = document.getElementById('sortMenu');
 const filterByPriceDropdown = document.getElementById('filterByPriceMenu');
 const searchBarInput = document.getElementById('searchBar');
 
+const secondsSpan = document.getElementById('seconds');
+const minutessSpan = document.getElementById('minutes');
+
+
 let sortValue = 'price';
 let searchQuery = '';
 let filterByPriceSelectedValue = '-1';
@@ -13,6 +17,20 @@ let filterByPriceValueArray = [
     [20,50],
     [50,100]
 ]
+
+let timerInSeconds = 0;
+let timerIntervalId = null;
+
+function startTimer() {
+    timerIntervalId = window.setInterval(() => {
+        const minutes = Math.floor(timerInSeconds/60); 
+        const seconds = timerInSeconds%60;
+        secondsSpan.innerHTML = (seconds < 10) ? ('0' + seconds) : (seconds);
+        minutessSpan.innerHTML = (minutes < 10) ? ('0' + minutes) : (minutes);
+        timerInSeconds++;
+    },1000);
+}
+startTimer();
 
 searchBarInput.addEventListener('input', (evt) => {
     searchQuery = evt.target.value; 
@@ -114,3 +132,6 @@ renderPage();
 //     productContainer.appendChild(productDIV);
 
 // }
+
+
+

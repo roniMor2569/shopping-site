@@ -78,3 +78,4 @@ function filterByName(prodcutArray, partialName) {
     console.log('search resolt:' , filteredArray)
     return filteredArray; 
 }
+
